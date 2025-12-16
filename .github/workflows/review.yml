@@ -289,7 +289,7 @@ jobs:
           done
 
           echo -e "## \`nixpkgs-review\` result\n" >> report.md
-          echo -e "Generated using [\`nixpkgs-review-gha\`](https://github.com/Defelo/nixpkgs-review-gha)\n" >> report.md
+          echo -e "Generated using [\`nixpkgs-review-gha\`](https://github.com/adamperkowski/nixpkgs-review-gha)\n" >> report.md
           echo -e "Command: \`nixpkgs-review pr ${PR_NUMBER}${EXTRA_ARGS:+ $EXTRA_ARGS}\`" >> report.md
           echo -e "Commit: [\`$HEAD\`](https://github.com/NixOS/nixpkgs/commit/$HEAD) ([subsequent changes](https://github.com/NixOS/nixpkgs/compare/$HEAD..pull/$PR_NUMBER/head))" >> report.md
           echo -e "Merge: [\`$MERGE\`](https://github.com/NixOS/nixpkgs/commit/$MERGE)\n" >> report.md
@@ -365,7 +365,7 @@ jobs:
           fi
           user_id="$(gh api /user --jq .id)"
           if [[ "$user_id" != "$PR_AUTHOR_ID" ]]; then
-            gh pr -R NixOS/nixpkgs review ${PR_NUMBER} --approve -b "Approved automatically following the successful run of \`nixpkgs-review\`."
+            gh pr -R NixOS/nixpkgs review ${PR_NUMBER} --approve -b "thanks<br><sub>approved automatically by [\`nixpkgs-review-gha\`](https://github.com/adamperkowski/nixpkgs-review-gha)"
           elif [[ "${{ inputs.on-success }}" = "approve" ]]; then
             echo "::error::You cannot approve your own pull request."
             exit 1
